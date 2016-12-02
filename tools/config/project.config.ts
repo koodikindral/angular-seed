@@ -1,7 +1,7 @@
 import { join } from 'path';
 
 import { SeedConfig } from './seed.config';
-// import { ExtendPackages } from './seed.config.interfaces';
+import { ExtendPackages } from './seed.config.interfaces';
 
 /**
  * This class extends the basic seed configuration, allowing for project specific overrides. A few examples can be found
@@ -32,33 +32,18 @@ export class ProjectConfig extends SeedConfig {
       // {src: `${this.CSS_SRC}/path-to-lib/test-lib.css`, inject: true, vendor: false},
     ];
 
-    // Add packages (e.g. lodash)
-    // let additionalPackages: ExtendPackages[] = [{
-    //   name: 'lodash',
-    //   path: `${this.APP_BASE}node_modules/lodash/lodash.js`,
-    //   packageMeta: {
-    //     main: 'index.js',
-    //     defaultExtension: 'js'
-    //   }
-    // }];
-    //
-    // or
-    //
-    // let additionalPackages: ExtendPackages[] = [];
-    //
-    // additionalPackages.push({
-    //   name: 'lodash',
-    //   path: `${this.APP_BASE}node_modules/lodash/lodash.js`,
-    //   packageMeta: {
-    //     main: 'index.js',
-    //     defaultExtension: 'js'
-    //   }
-    // });
-    //
-    // this.addPackagesBundles(additionalPackages);
+    let additionalPackages: ExtendPackages[] = [];
 
-    /* Add to or override NPM module configurations: */
-    // this.mergeObject(this.PLUGIN_CONFIGS['browser-sync'], { ghostMode: false });
+    additionalPackages.push({
+      name: 'ng2-translate',
+      path: `${this.APP_BASE}node_modules/ng2-translate/bundles`,
+      packageMeta: {
+        main: 'index.js',
+        defaultExtension: 'js'
+      }
+    });
+
+    this.addPackagesBundles(additionalPackages);
   }
 
 }
